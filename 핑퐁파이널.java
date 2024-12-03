@@ -10,38 +10,32 @@ import java.io.File;
 import java.io.IOException;
 
 public class PingPong extends JPanel implements KeyListener, Runnable {
-    // Frame and game area sizes
+
     private static final int FRAME_WIDTH = 800;
     private static final int FRAME_HEIGHT = 800;
     private static final int WINDOW_WIDTH = 700;
     private static final int WINDOW_HEIGHT = 700;
 
-    // Paddles, ball sizes, and speed
     private static final int PADDLE_WIDTH = 30;
     private static final int PADDLE_HEIGHT = 150;
     private static final int BALL_SIZE = 16;
     private static final int PADDLE_SPEED = 10;
 
-    // Offsets for centering the game area
     private static final int OFFSET_X = (FRAME_WIDTH - WINDOW_WIDTH) / 2;
     private static final int OFFSET_Y = (FRAME_HEIGHT - WINDOW_HEIGHT) / 2;
 
-    // Ball movement and speed limits
     private int ballX = WINDOW_WIDTH / 2, ballY = WINDOW_HEIGHT / 2;
     private int ball_x_mov = 2, ball_y_mov = 2;
     private final float MAX_SPEED = 6.0f;
     private final float MIN_SPEED = 2.5f;
 
-    // Paddle positions
     private int paddle1y = (WINDOW_HEIGHT - PADDLE_HEIGHT) / 2;
     private int paddle2y = (WINDOW_HEIGHT - PADDLE_HEIGHT) / 2;
 
-    // Game state variables
     private boolean running = true;
     private final boolean[] keyStates = new boolean[256];
     private int player1Score = 0, player2Score = 0;
 
-    // Random generator and sound effects
     private final Random random = new Random();
     private Clip[] paddleHitSounds;
     private static final int NUM_SOUNDS = 2;
