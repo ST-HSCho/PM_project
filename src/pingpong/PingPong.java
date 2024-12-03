@@ -30,7 +30,7 @@ public class PingPong extends JPanel implements KeyListener, Runnable {
     // Ball movement and speed limits
     private int ballX = WINDOW_WIDTH / 2, ballY = WINDOW_HEIGHT / 2;
     private int ball_x_mov = 2, ball_y_mov = 2;
-    private final float MAX_SPEED = 6.0f;
+    private final float MAX_SPEED = 9.0f;
     private final float MIN_SPEED = 2.5f;
 
     // Paddle positions
@@ -45,7 +45,7 @@ public class PingPong extends JPanel implements KeyListener, Runnable {
     // Random generator and sound effects
     private final Random random = new Random();
     private Clip[] paddleHitSounds;
-    private static final int NUM_SOUNDS = 2;
+    private static final int NUM_SOUNDS = 3;
 
     public PingPong() {
         this.setPreferredSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
@@ -62,9 +62,11 @@ public class PingPong extends JPanel implements KeyListener, Runnable {
         try {
             File sound1 = new File("src/music/E_PP1.wav");
             File sound2 = new File("src/music/E_PP2.wav");
+            File sound3 = new File("src/music/E_PP3.wav");
 
             paddleHitSounds[0] = loadClip(sound1);
             paddleHitSounds[1] = loadClip(sound2);
+            paddleHitSounds[2] = loadClip(sound3);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -196,7 +198,7 @@ public class PingPong extends JPanel implements KeyListener, Runnable {
         if (ballX < 0) { 
             player2Score++;
             resetBall();
-        } else if (ballX > OFFSET_X + WINDOW_WIDTH) { 
+        } else if (ballX > WINDOW_WIDTH) {
             player1Score++;
             resetBall();
         }
@@ -258,7 +260,7 @@ public class PingPong extends JPanel implements KeyListener, Runnable {
     public void keyTyped(KeyEvent e) {}
 
     public static void main(String[] args) {
-    	/*
+
         JFrame frame = new JFrame("Ping Pong");
         PingPong game = new PingPong();
         frame.add(game);
@@ -268,6 +270,6 @@ public class PingPong extends JPanel implements KeyListener, Runnable {
 
         Thread gameThread = new Thread(game);
         gameThread.start();
-        */
+
     }
 }
